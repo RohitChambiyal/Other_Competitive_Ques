@@ -25,7 +25,7 @@ public class incdec{
                 if(locc!=-1&&arr1[i]<=arr1[locc])    {
                     arr1[i]++;
                 }
-                else if(arr1[i]<i+1){
+                while(arr1[i]<i+1){
                     arr1[i]++;
                 }
                 locc=i;
@@ -65,7 +65,6 @@ public class incdec{
                   
                     
                 }} 
-                //test DDIDDIID
                 //12 123 1232 doc=3 1243 
                 //21 
                 //21 213 2143 21435
@@ -78,3 +77,6 @@ public class incdec{
         System.out.println("\n\n------------------End------------------\n");   
     }
 }
+
+//  DDIDDIID
+// 1 21 321 3214
