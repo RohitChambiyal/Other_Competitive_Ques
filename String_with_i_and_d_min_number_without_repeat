@@ -1,0 +1,80 @@
+//Given a pattern containing only I’s and D’s. I for increasing and D for decreasing. Devise an algorithm to print the minimum number following that pattern. Digits from 1-9 and digits can’t repeat.
+
+import java.util.Scanner;
+public class incdec{
+    public static void main(String args[]){
+        System.out.println("\n\n-----------------Output----------------\n");
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Enter the string");
+        String s1 = in.nextLine();
+        int arr1[] = new int[s1.length()+1];
+        arr1[0] = 1;
+        int locc=-1;
+        int docc=1;
+        char sc1[] = new char[s1.length()];
+        for(int i=0;i<s1.length();i++){
+            sc1[i]=s1.charAt(i);
+        }
+        System.out.println("\n");
+        //now work starts
+
+        for(int i=1;i<s1.length()+1;i++){
+            if(sc1[i-1]=='I'){
+                arr1[i]=arr1[i-1]+1;
+                if(locc!=-1&&arr1[i]<=arr1[locc])    {
+                    arr1[i]++;
+                }
+                else if(arr1[i]<i+1){
+                    arr1[i]++;
+                }
+                locc=i;
+            
+            }
+            
+            if(sc1[i-1]=='D'){
+                if(locc==-1){
+                    docc = i;
+                    arr1[docc]=arr1[docc-1]-1;
+                    while(docc>locc){
+                        arr1[docc]++;
+                        docc--;
+                    }
+                //12 123 
+//1 arr1[1] = arr1[0] -1 = 0; 1>-1 11, 0>-1 21
+//2 arr1[2] = arr1[1] -1 = 0;                     
+                }
+                else if(sc1[i-2]=='D'){
+                    docc = i;
+                    arr1[docc]=arr1[docc-1]-1;
+                    while(docc>locc){
+                        arr1[docc]++;
+                        docc--;
+                        
+                    }
+                    if(locc!=-1){
+                        arr1[locc]++;
+                    }
+                }
+                else{
+                arr1[i]=arr1[i-1]-1;
+                docc=i;
+                if(arr1[i]<=arr1[i-1]&&locc!=-1){
+                   arr1[i]=arr1[locc];
+                  arr1[locc]++; 
+                  
+                    
+                }} 
+                //test DDIDDIID
+                //12 123 1232 doc=3 1243 
+                //21 
+                //21 213 2143 21435
+            }
+        }
+
+        for(int i=0;i<=s1.length();i++){
+            System.out.print(arr1[i]);
+        };
+        System.out.println("\n\n------------------End------------------\n");   
+    }
+}
