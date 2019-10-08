@@ -1,0 +1,66 @@
+//String decoding
+//input : 3[2[ab]c] output:ababcababcababc
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class prob2_23 {
+    public static void main(String[] args){
+        System.out.println("\n\n-----------------Output----------------\n");
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the encoded string");
+        String g = in.next();
+        int len = g.length();
+        char[] a = new char[len];
+        for(int i=0;i<len;i++){
+            a[i]= g.charAt(i);
+        }
+        Stack<Character> st1 = new Stack<Character>();
+        int i=0;
+        String f="";
+        int back=0;
+        while(i<len){
+        int x = (int)(a[i]);
+        if(x==48||x==49||x==50||x==51||x==52||x==53||x==54||x==55||x==56||a[i]=='['){
+            st1.push(a[i]);
+            i++;
+        }
+        else if(a[i]==']'&&!st1.isEmpty()){
+            
+            System.out.println("peek "+st1.peek());
+            st1.pop();
+            while(!st1.isEmpty()||st1.peek()!='['){
+                if(st1.peek()!='['){
+                System.out.println(st1.peek());
+                back  = back*10 + (st1.pop()-48);
+                System.out.println("old "+back);
+                break;
+                }
+            }
+            System.out.println("back = "+back);
+            String ff=f;
+            for(int j=1;j<back;j++){
+                
+                f = f + ff;
+                System.out.println("uncompleted string : "+f);
+            }
+            i++;
+            back=0;
+        }
+        else{ 
+            System.out.println(a[i]);
+            System.out.println("x is "+x);
+            if(a[i]!=']'){
+            f=f+a[i];}
+            i++;
+        }
+        
+
+
+        }
+        System.out.println("\n\n\nfinal output : "+f);
+
+        System.out.println("\n\n------------------End------------------\n");
+    }
+}
