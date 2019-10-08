@@ -1,0 +1,60 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class prob1_23 {
+    public static void main(String[] args){
+        Stack<Integer> st1 = new Stack<Integer>();
+        Stack<Integer> st2 = new Stack<Integer>();
+
+        System.out.println("Enter number of elements");
+        Scanner s = new Scanner(System.in);
+        int length = s.nextInt();
+        System.out.println("Enter the elements");
+        int a[] = new int[length];
+        for(int i=0;i<length;i++){
+            a[i] = s.nextInt();
+        }
+        System.out.println("Enter 1 to sort in ascending order and 2 to sort in descending order");
+        int which = s.nextInt();
+        if(st1.isEmpty()){
+            st1.push(a[0]);
+            }
+        int j=1;
+        if(which==1){
+            System.out.println("Popped stack in ascending order");
+        while(j<length){
+            while(!st1.isEmpty()&&st1.peek()<a[j]){
+                int x= st1.pop();
+                
+                st2.push(x);
+            }
+            st1.push(a[j]);
+            while(!st2.isEmpty()){
+                int x = st2.pop();
+                st1.push(x);
+            }
+            j++;
+        }
+        while(!st1.isEmpty()){
+            System.out.println("popped "+ st1.pop());
+        }}
+        else if(which==2){
+            System.out.println("Popped stack in descending order");
+            while(j<length){
+                while(!st1.isEmpty()&&st1.peek()>a[j]){
+                    int x= st1.pop();
+                    
+                    st2.push(x);
+                }
+                st1.push(a[j]);
+                while(!st2.isEmpty()){
+                    int x = st2.pop();
+                    st1.push(x);
+                }
+                j++;
+            }
+            while(!st1.isEmpty()){
+                System.out.println("popped "+ st1.pop());
+            }}
+    }
+}
