@@ -1,0 +1,125 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class prob2_27_2 {
+    //Stack<Stack> stmain = new Stack<Stack>();
+   // Stack<Integer> s1 = new Stack<Integer>();
+    public Stack newStack(){
+        Stack<Integer> st = new Stack<Integer>();
+        System.out.println(st.getClass());
+        return st;
+
+    }
+    public static void main(String[] args){
+        prob2_27_2 obj1 = new prob2_27_2();
+        
+       
+    Stack<Stack> stmain = new Stack<Stack>();
+    Stack<Integer> s1 = new Stack<Integer>();
+        System.out.println("Enter no of elements");
+        Scanner in = new Scanner(System.in);
+        int ar1len = in.nextInt();
+        System.out.println("Enter one stack limit");
+        int stacklimit = in.nextInt();
+        System.out.println("Enter stack elements");
+        int ar1[] = new int[ar1len];
+        for(int i=0;i<ar1len;i++){
+            ar1[i] = in.nextInt();
+        }
+        int length = ar1.length;
+        int k=0;
+        int i=0;
+        int last=0;
+        int check=0;
+       while(k<ar1len){
+            if(i>=stacklimit){
+            i=0;
+            stmain.push(s1);
+            s1= obj1.newStack();        
+            
+            }
+            else{
+                s1.push(ar1[k]);
+                System.out.println("pushed "+s1.peek());
+                k++;
+                i++;
+            } 
+            if(k==length){
+                last = i;
+                System.out.println(last);
+            }
+         
+        } 
+        //pop
+        //last = obj1.pushing(ar1, stacklimit, obj1);
+        k=0;
+        i=0;
+        check=0;
+        while(k<ar1len){
+            //System.out.println("peeking "+s1.peek());
+            if(check==0){
+              //  System.out.println("i " + last);
+
+                if(i>last){
+                    s1=stmain.pop();
+                    }
+                    else if(i==last){
+                        s1=stmain.pop();        
+                        check++;
+                        i=0;
+                        
+                    }
+                    else {
+                      //  System.out.println("i value " + i);
+                     //   System.out.println(s1);
+                     System.out.println("stack is "+s1 );
+ 
+                     System.out.println("popped is"+s1.pop());
+                        k++;
+                        i++;
+                        
+                    }        
+            }
+               else{
+                    while(i<stacklimit){
+                        System.out.println("stack is "+s1 );
+
+                    System.out.println("popped "+s1.pop()+"\n");
+                    
+                    k++;
+                    i++;}
+                    i=0;
+                    if(!stmain.isEmpty()){
+                        s1=stmain.pop();
+                    }
+                } 
+             
+            /*
+            else if(i>=stacklimit&&!stmain.isEmpty()){
+                //System.out.println("check "+check);
+                //System.out.println("entered");
+                i=0;
+               // s1=stmain.pop();        
+                
+                }
+
+                else{
+                    //System.out.println("check "+check);
+                    //System.out.println(check);
+                   // System.out.println("tt " +s1);
+                    if(!s1.isEmpty()){
+                        System.out.println("stack name "+ s1);
+                    System.out.println("popping : "+s1.pop());}
+                    k++;
+                    i++;
+                    //check=1;
+                    System.out.println("i is "+i);
+                } 
+                */
+                
+            
+        }
+
+        
+    }
+}
