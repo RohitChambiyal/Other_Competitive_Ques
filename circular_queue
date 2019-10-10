@@ -1,1 +1,39 @@
+/******************************************************************************
 
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main
+{
+    static int front =0, rear =0;
+    static int size;
+    public static void enqueue(int[] arr, int element){
+        if(front==(rear+1)%size){
+            System.out.println("Overflow");
+        }
+        else{
+            arr[rear]=element;
+            System.out.println("enqued element "+ arr[rear]);
+            rear = (rear+1)%size;
+        }
+    }
+    public static void dequeue(int[] arr){
+        if(front==rear){
+            System.out.println("Underflow");
+        }
+        else{
+            System.out.println("Dequed element " + arr[front]);
+            front = (front+1) %size;
+        }
+    }
+	public static void main(String[] args) {
+	    int[] arr = new int[5];
+	    size = 5;
+	    enqueue(arr,6);
+	    dequeue(arr);
+	    
+	}
+}
