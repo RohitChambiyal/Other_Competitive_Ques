@@ -1,0 +1,117 @@
+class LinkedList{
+    int data;
+    LinkedList next = null;
+    LinkedList(){};
+    LinkedList(int data){
+        this.data = data;
+    }
+   
+}
+public class mergesortlinkedlist{
+
+   
+    public static void add(LinkedList l, int data){
+        LinkedList head =l;
+        LinkedList next = new LinkedList(data) ;
+        while(head.next!=null){
+            head = head.next;
+        }
+        head.next= next;
+        (head.next).next=null;
+        //head=null;
+    }
+    public static void printll(LinkedList l){
+        LinkedList head = l;
+
+        while(head.next!=null){
+            head = head.next;
+            System.out.println(head.data);
+        }
+    }
+
+    
+
+    public static LinkedList midlist(LinkedList l1) {
+        if(l1==null){
+            return l1;
+        }
+        LinkedList fast = l1;
+        LinkedList slow = l1;
+//        int count = 0;
+        while(fast.next!=null&&fast.next.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;      
+    }
+    
+/*
+    public static LinkedList startmid(LinkedList l1) {
+        LinkedList fast = l1.next;
+        LinkedList slow = l1.next;
+        LinkedList lget = l1;
+        while(fast.next!=null&&fast.next.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        while(lget.next!=slow){
+            lget=lget.next;
+            
+            
+        }
+        lget.next = null;
+        
+        return l1;
+        
+    }
+  */  
+    public static LinkedList mergest(LinkedList l1){
+        if(l1==null||l1.next==null){
+            return l1;
+        }
+        LinkedList mid = midlist(l1);
+        LinkedList midNext = mid.next;
+        mid.next = null;
+
+        LinkedList left = mergest(l1);
+        LinkedList right = mergest(midNext);
+
+        LinkedList sortedList= sortList(left, right);
+         
+        return sortedList;
+    }
+
+    public static LinkedList sortList(LinkedList start, LinkedList end){
+        LinkedList temp;
+        if(start==null){
+            return end;
+        }
+        if(end == null){
+            return start;
+        }
+        if(start.data<=end.data){
+            temp = start;
+            temp.next = sortList(start.next,end);
+        }
+        else{
+            temp = end;
+            temp.next = sortList(start,end.next);
+        }
+        return temp;
+
+    }
+    public static void main(String[] args){
+        LinkedList l1 = new LinkedList();
+        LinkedList l2 = new LinkedList();
+       add(l1,5);
+      add(l1,4);
+      add(l1,3);
+      add(l1,2);
+      add(l1,1);
+      add(l1,0);
+      printll(l1);
+      l2 =mergest(l1);
+      printll(l2);
+        
+    }
+}
